@@ -1,0 +1,26 @@
+{
+    "total_lines": 9,
+    "valid_lines": 8,
+    "malformed_lines": 1,
+    "counts_by_level": {
+        "DEBUG": 1,
+        "ERROR": 3,
+        "INFO": 3,
+        "WARNING": 1
+    },
+    "top_errors": [
+        {
+            "message": "Database connection failed",
+            "count": 2
+        },
+        {
+            "message": "Payment processing failed",
+            "count": 1
+        }
+    ],
+    "start_time": "2026-10-30 09:15:20",
+    "end_time": "2026-10-30 09:22:30",
+    "malformed_line_numbers": [
+        8
+    ]
+}

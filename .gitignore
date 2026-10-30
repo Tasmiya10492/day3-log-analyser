@@ -1,0 +1,23 @@
+# Python virtual environment
+.venv/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+
+# Test cache
+.pytest_cache/
+
+# Ruff cache
+.ruff_cache/
+
+# Pyright cache
+.pyright/
+
+# Build and distribution files
+build/
+dist/
+*.egg-info/
+
+# IDE settings
+.idea/
