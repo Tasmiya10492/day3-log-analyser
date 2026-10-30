@@ -1,11 +1,12 @@
 import json
+import sys
 from datetime import datetime
 from pathlib import Path
 
 import pytest
 
 from log_analyser.analyser import analyse_log_file, parse_log_line
-from log_analyser.cli import save_summary
+from log_analyser.cli import main, save_summary
 from log_analyser.exceptions import LogFileNotFoundError
 
 
@@ -193,3 +194,40 @@ def test_save_summary_with_empty_file(tmp_path: Path) -> None:
     assert saved_data["total_lines"] == 0
     assert saved_data["start_time"] is None
     assert saved_data["end_time"] is None
+
+
+def test_cli_generates_summary_with_malformed_lines(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    log_file = tmp_path / "application.log"
+    log_file.write_text(
+        "2026-10-30 09:15:20 INFO Application started\n"
+        "INVALID LOG ENTRY\n"
+        "2026-10-30 09:16:20 ERROR Database failed\n",
+        encoding="utf-8",
+    )
+
+    output_file = tmp_path / "summary.json"
+
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "log-analyser",
+            str(log_file),
+            "--output",
+            str(output_file),
+        ],
+    )
+
+    result = main()
+
+    assert result == 0
+    assert output_file.exists()
+
+    saved_data = json.loads(output_file.read_text(encoding="utf-8"))
+
+    assert saved_data["total_lines"] == 3
+    assert saved_data["valid_lines"] == 2
+    assert saved_data["malformed_lines"] == 1
