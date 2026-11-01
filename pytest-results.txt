@@ -1,0 +1,25 @@
+============================= test session starts ==============================
+platform linux -- Python 3.14.4, pytest-9.2.0, pluggy-1.7.0 -- /home/tasmiyaustad/day3-log-analyser/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/tasmiyaustad/day3-log-analyser
+configfile: pyproject.toml
+testpaths: tests
+collecting ... collected 15 items
+
+tests/test_analyser.py::test_parse_valid_log_line PASSED                 [  6%]
+tests/test_analyser.py::test_parse_log_line_with_message_spaces PASSED   [ 13%]
+tests/test_analyser.py::test_parse_invalid_log_format PASSED             [ 20%]
+tests/test_analyser.py::test_parse_invalid_timestamp PASSED              [ 26%]
+tests/test_analyser.py::test_parse_invalid_log_level PASSED              [ 33%]
+tests/test_analyser.py::test_analyse_log_counts PASSED                   [ 40%]
+tests/test_analyser.py::test_analyse_malformed_lines PASSED              [ 46%]
+tests/test_analyser.py::test_analyse_top_errors PASSED                   [ 53%]
+tests/test_analyser.py::test_analyse_time_range PASSED                   [ 60%]
+tests/test_analyser.py::test_analyse_empty_file PASSED                   [ 66%]
+tests/test_analyser.py::test_missing_log_file PASSED                     [ 73%]
+tests/test_analyser.py::test_invalid_top_n PASSED                        [ 80%]
+tests/test_analyser.py::test_save_summary_as_json PASSED                 [ 86%]
+tests/test_analyser.py::test_save_summary_with_empty_file PASSED         [ 93%]
+tests/test_analyser.py::test_cli_generates_summary_with_malformed_lines PASSED [100%]
+
+============================== 15 passed in 0.13s ==============================
